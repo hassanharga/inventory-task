@@ -1,0 +1,17 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-container {
+  flex: 1;
+  padding: 20px;
+  margin-top: 64px; // Account for fixed header
+}
+
+@media (max-width: 599px) {
+  .content-container {
+    padding: 16px;
+  }
+}

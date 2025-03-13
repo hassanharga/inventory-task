@@ -1,0 +1,56 @@
+<div class="detail-container">
+  <button mat-button color="primary" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon> Back to List
+  </button>
+
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <div *ngIf="error" class="error-container">
+    <h2>Item not found</h2>
+    <p>The inventory item you're looking for doesn't exist.</p>
+  </div>
+
+  <mat-card *ngIf="item && !loading" class="item-card">
+    <mat-card-header>
+      <mat-card-title>{{ item.name }}</mat-card-title>
+      <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="item-details">
+        <div class="detail-row">
+          <span class="label">Stock Quantity:</span>
+          <span [ngClass]="getStockStatusClass(item.status)"
+            >{{ item.quantity }} ({{ item.status }})</span
+          >
+        </div>
+
+        <div class="detail-row">
+          <span class="label">Last Updated:</span>
+          <span>{{ item.lastUpdated | date : "medium" }}</span>
+        </div>
+
+        <div class="detail-row" *ngIf="item.price">
+          <span class="label">Price:</span>
+          <span>{{ item.price | currency }}</span>
+        </div>
+
+        <div class="detail-row" *ngIf="item.description">
+          <span class="label">Description:</span>
+          <p class="description">{{ item.description }}</p>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="editItem()">
+        <mat-icon>edit</mat-icon> Edit
+      </button>
+      <button mat-raised-button color="warn" (click)="deleteItem()">
+        <mat-icon>delete</mat-icon> Delete
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

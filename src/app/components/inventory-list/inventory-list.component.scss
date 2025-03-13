@@ -1,0 +1,65 @@
+.inventory-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filters-container {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  mat-form-field {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+
+table {
+  width: 100%;
+}
+
+.status-chip {
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-in {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+
+.status-low {
+  background-color: #fef7e0;
+  color: #b06000;
+}
+
+.status-out {
+  background-color: #fce8e6;
+  color: #c5221f;
+}
+
+@media (max-width: 600px) {
+  .filters-container {
+    flex-direction: column;
+    align-items: stretch;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+.detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.item-card {
+  margin-top: 20px;
+}
+
+.item-details {
+  margin-top: 20px;
+}
+
+.detail-row {
+  margin-bottom: 16px;
+}
+
+.label {
+  font-weight: 500;
+  margin-right: 8px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.description {
+  white-space: pre-line;
+  margin-top: 8px;
+}
+
+.status-in {
+  color: #137333;
+}
+
+.status-low {
+  color: #b06000;
+}
+
+.status-out {
+  color: #c5221f;
+}
+
+mat-card-actions {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+
+@media (max-width: 600px) {
+  .detail-container {
+    padding: 0 8px;
+  }
+}
