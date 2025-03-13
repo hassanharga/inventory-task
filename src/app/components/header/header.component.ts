@@ -5,7 +5,6 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
   imports: [MatToolbarModule, MatButtonModule, RouterLink],
   template: `
     <mat-toolbar color="primary" class="header">

@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -23,7 +23,6 @@ import { InventoryService } from '../../services/inventory.service';
   templateUrl: './inventory-form.component.html',
   styleUrls: ['./inventory-form.component.scss'],
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -36,22 +35,20 @@ import { InventoryService } from '../../services/inventory.service';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     RouterModule
-  ]
+]
 })
 export class InventoryFormComponent implements OnInit {
+  private fb = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private inventoryService = inject(InventoryService);
+  private snackBar = inject(MatSnackBar);
+
   inventoryForm!: FormGroup;
   isEditMode = false;
   itemId?: number;
   loading = false;
   categories = ['Electronics', 'Furniture', 'Appliances', 'Office Supplies', 'Other'];
-
-  constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private inventoryService: InventoryService,
-    private snackBar: MatSnackBar
-  ) { }
 
   ngOnInit(): void {
     this.createForm();

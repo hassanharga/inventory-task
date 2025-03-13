@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -26,16 +26,14 @@ import { InventoryService } from '../../services/inventory.service';
   ]
 })
 export class InventoryDetailComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private inventoryService = inject(InventoryService);
+  private snackBar = inject(MatSnackBar);
+
   item: InventoryItem | undefined;
   loading = true;
   error = false;
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private inventoryService: InventoryService,
-    private snackBar: MatSnackBar
-  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(

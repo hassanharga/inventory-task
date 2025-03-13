@@ -3,44 +3,48 @@
     <mat-icon>arrow_back</mat-icon> Back to List
   </button>
 
-  <div *ngIf="loading" class="loading-container">
+  <!-- loading -->
+  @if (loading) {
+  <div class="loading-container">
     <mat-spinner diameter="40"></mat-spinner>
   </div>
-
-  <div *ngIf="error" class="error-container">
+  } @else if (error) {
+  <div class="error-container">
     <h2>Item not found</h2>
     <p>The inventory item you're looking for doesn't exist.</p>
   </div>
-
-  <mat-card *ngIf="item && !loading" class="item-card">
+  } @else{
+  <mat-card class="item-card">
     <mat-card-header>
-      <mat-card-title>{{ item.name }}</mat-card-title>
-      <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>
+      <mat-card-title>{{ item?.name }}</mat-card-title>
+      <mat-card-subtitle>{{ item?.category }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <div class="item-details">
         <div class="detail-row">
           <span class="label">Stock Quantity:</span>
-          <span [ngClass]="getStockStatusClass(item.status)"
-            >{{ item.quantity }} ({{ item.status }})</span
+          <span [ngClass]="getStockStatusClass(item?.status)"
+            >{{ item?.quantity }} ({{ item?.status }})</span
           >
         </div>
 
         <div class="detail-row">
           <span class="label">Last Updated:</span>
-          <span>{{ item.lastUpdated | date : "medium" }}</span>
+          <span>{{ item?.lastUpdated | date : "medium" }}</span>
         </div>
 
-        <div class="detail-row" *ngIf="item.price">
+        @if (item?.price) {
+        <div class="detail-row">
           <span class="label">Price:</span>
-          <span>{{ item.price | currency }}</span>
+          <span>{{ item?.price | currency }}</span>
         </div>
-
-        <div class="detail-row" *ngIf="item.description">
+        } @if (item?.description) {
+        <div class="detail-row">
           <span class="label">Description:</span>
-          <p class="description">{{ item.description }}</p>
+          <p class="description">{{ item?.description }}</p>
         </div>
+        }
       </div>
     </mat-card-content>
 
@@ -53,4 +57,5 @@
       </button>
     </mat-card-actions>
   </mat-card>
+  }
 </div>

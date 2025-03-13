@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -38,6 +38,9 @@ import { InventoryService } from '../../services/inventory.service';
   ]
 })
 export class InventoryListComponent implements OnInit {
+  private inventoryService = inject(InventoryService);
+  private router = inject(Router);
+
   displayedColumns: string[] = ['name', 'category', 'quantity', 'status', 'lastUpdated', 'actions'];
   dataSource = new MatTableDataSource<InventoryItem>([]);
   searchControl = new FormControl('');
@@ -48,10 +51,6 @@ export class InventoryListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(
-    private inventoryService: InventoryService,
-    private router: Router
-  ) { }
 
   ngOnInit(): void {
     this.loadInventoryItems();

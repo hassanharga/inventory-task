@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 @Component({
   selector: 'app-header',
   template: '',
-  standalone: true
 })
 class HeaderStubComponent { }
 
